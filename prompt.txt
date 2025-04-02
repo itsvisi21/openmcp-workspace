@@ -1,0 +1,23 @@
+
+"Create an open-source project called openmcp-workspace, a centralized MVP for a Contextual Memory Manager dashboard for AI workspaces. It should be designed to support a future Web4 upgrade with decentralized storage, smart contract writes, and distributed MCP read mesh. Scaffold a monorepo structure with three apps (dashboard, backend, mcp-server) and three libraries (llm-adapter, context-sdk, storage-adapter). frontend should be in react and rest is in python/solidity. Set up Feature One: manual_context_commit, including all needed backend, UI, LLM routing, and data storage (PostgreSQL + S3). Use DevOps principles: prepare Docker setup, GitHub Actions CI, .env templates, test suite, and agent-ready documentation. Include:
+
+project.status.json to track every created/updated/deleted file with timestamps and feature tags.
+backlog.json, current_applied_action.log to hold prioritized, trackable feature descriptions and development stages reporting current status at every chat closure.
+docs/ folder with:
+
+architecture.md,
+agent-protocol.md,
+features/manual_context_commit.md,
+and upgrade plan for full decentralization.
+MCP-compatible server exposing JSON-RPC endpoint for reading context from centralized storage.
+Modular design for replacing centralized storage with IPFS and smart contracts later.
+Local and cloud-configurable LLM access for workspaces.
+Follow-up ready project layout: agent should always read project.status.json and latest context window before working on any task.
+Scaffold all backend and frontend interfaces for Feature One and ensure that all logic is documented, testable, and incrementally extensible by autonomous agents or human devs."**
+
+It sets up the entire ecosystem with foresight for decentralized evolution.
+Forces modular thinking (apps/libs separation).
+Includes agent awareness through project.status.json and backlog.json.
+Enables true agent-driven follow-up with tracked context history.
+Implements modern DevOps and CI/CD with feature-driven planning.
+Builds in smart contract + IPFS upgrade slots from day one.

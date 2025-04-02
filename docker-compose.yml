@@ -1,0 +1,84 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./apps/backend
+      dockerfile: Dockerfile
+      target: ${TARGET:-development}
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./apps/backend:/app
+    environment:
+      - ENVIRONMENT=${ENVIRONMENT:-development}
+    depends_on:
+      - postgres
+    networks:
+      - openmcp-network
+
+  mcp-server:
+    build:
+      context: ./apps/mcp-server
+      dockerfile: Dockerfile
+      target: ${TARGET:-development}
+    ports:
+      - "8001:8001"
+    volumes:
+      - ./apps/mcp-server:/app
+    environment:
+      - ENVIRONMENT=${ENVIRONMENT:-development}
+    depends_on:
+      - backend
+    networks:
+      - openmcp-network
+
+  postgres:
+    image: postgres:15-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER:-postgres}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-postgres}
+      - POSTGRES_DB=${POSTGRES_DB:-openmcp}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - openmcp-network
+
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus:/etc/prometheus
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+      - '--web.console.templates=/usr/share/prometheus/consoles'
+    networks:
+      - openmcp-network
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3001:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_ADMIN_PASSWORD:-admin}
+    depends_on:
+      - prometheus
+    networks:
+      - openmcp-network
+
+volumes:
+  postgres_data:
+  prometheus_data:
+  grafana_data:
+
+networks:
+  openmcp-network:
+    driver: bridge 

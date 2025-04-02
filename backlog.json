@@ -1,0 +1,77 @@
+{
+  "version": "0.1.0",
+  "last_updated": "2024-03-19T00:00:00Z",
+  "features": [
+    {
+      "id": "F1",
+      "name": "Manual Context Commit",
+      "priority": "P0",
+      "status": "in_progress",
+      "description": "Enable users to manually commit context to the MCP system",
+      "components": [
+        {
+          "name": "Frontend Dashboard",
+          "tasks": [
+            "Create context commit form",
+            "Implement context preview",
+            "Add commit history view",
+            "Integrate with MCP server"
+          ]
+        },
+        {
+          "name": "Backend API",
+          "tasks": [
+            "Design REST endpoints",
+            "Implement context validation",
+            "Set up PostgreSQL storage",
+            "Configure S3 integration"
+          ]
+        },
+        {
+          "name": "MCP Server",
+          "tasks": [
+            "Implement JSON-RPC endpoint",
+            "Set up context routing",
+            "Configure LLM adapter",
+            "Implement storage adapter"
+          ]
+        }
+      ],
+      "dependencies": [],
+      "estimated_completion": "2024-03-20T00:00:00Z"
+    },
+    {
+      "id": "F2",
+      "name": "Decentralized Storage Integration",
+      "priority": "P1",
+      "status": "planned",
+      "description": "Migrate storage to IPFS and implement smart contracts",
+      "components": [
+        {
+          "name": "IPFS Integration",
+          "tasks": [
+            "Set up IPFS node",
+            "Implement content addressing",
+            "Configure pinning service"
+          ]
+        },
+        {
+          "name": "Smart Contracts",
+          "tasks": [
+            "Design context storage contract",
+            "Implement access control",
+            "Set up contract deployment"
+          ]
+        }
+      ],
+      "dependencies": ["F1"],
+      "estimated_completion": "2024-04-01T00:00:00Z"
+    }
+  ],
+  "current_sprint": {
+    "start_date": "2024-03-19T00:00:00Z",
+    "end_date": "2024-03-26T00:00:00Z",
+    "focus": "Manual Context Commit MVP",
+    "blockers": []
+  }
+} 
